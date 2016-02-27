@@ -1,0 +1,82 @@
+object varTest = order("test")("vars")
+
+varTest.case(func(pass, error) {
+  string nom = "nom"
+  if nom+9 is "nom9" {
+    pass("nom+9 is nom9")
+  } else {
+    error("nom+9 isn't nom9")
+  }
+})
+
+varTest.case(func(pass, error) {
+  any f = func() {
+    6
+  }
+  if f() is 6 {
+    pass("f() is 6")
+  } else {
+    error("f() isn't 6")
+  }
+})
+
+varTest.case(func(pass, error) {
+  number PI = 22/7
+  if PI is 22/7 {
+    pass("PI is 22/7")
+  } else {
+    error("PI isn't 22/7")
+  }
+})
+
+varTest.case(func(pass, error) {
+  bool passed? = yes
+  array arr = [4, 5]
+  if arr.length() isnt 2 {
+    passed? = no
+  }
+  if arr[0] isnt 4 {
+    passed? = no
+  }
+  if arr[1] isnt 5 {
+    passed? = no
+  }
+  if passed? {
+    pass("array passed")
+  } else {
+    error("array failed")
+  }
+})
+
+varTest.case(func(pass, error) {
+  bool passed? = yes
+  object obj = {
+    f: 4,
+    o: {
+      b: 6
+    }
+  }
+  if obj.f isnt 4 {
+    passed? = no
+  }
+  unless obj.o {
+    passed? = no
+  }
+  if obj.o.b isnt 6 {
+    passed? = no
+  }
+  if passed? {
+    pass("object passed")
+  } else {
+    error("object failed")
+  }
+})
+
+varTest.case(func(pass, error) {
+  bool canIHaveSpecialChars? = yes
+  if canIHaveSpecialChars? {
+    pass("canIHaveSpecialChars? is true")
+  } else {
+    error("canIHaveSpecialChars? is false")
+  }
+})

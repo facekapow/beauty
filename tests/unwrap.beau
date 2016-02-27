@@ -1,0 +1,9 @@
+object obj = {
+  foo: 5,
+  bar: "yas"
+}
+
+unwrap(obj)
+
+io.out(foo)
+io.out(bar)

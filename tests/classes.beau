@@ -1,0 +1,36 @@
+object classesTest = order("test")("classes")
+
+classesTest.case(func(pass, error) {
+  class Ya {
+    func constructor() {
+      this.foo = 6
+      this.nom = func(i) i+"g"
+    }
+    func yas() this.foo
+  }
+  Ya yep = create Ya()
+  if (yep.nom(yep.yas())) {
+    pass("yep.nom(yep.yas()) is '6g'")
+  } else {
+    error("yep.nom(yep.yas()) isn't '6g'")
+  }
+})
+
+classesTest.case(func(pass, error) {
+  bool passed? = yes
+  string yas = "yepp"
+  if (yas.substring(0, 1) isnt "y") {
+    passed? = no
+  }
+  if (yas.whereIs?("pp") isnt 2) {
+    passed? = no
+  }
+  if yas.length() isnt 4 {
+    passed? = no
+  }
+  if passed? {
+    pass("string class works")
+  } else {
+    error("string class doesn't work")
+  }
+})

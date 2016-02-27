@@ -1,0 +1,21 @@
+object fs = order("fs")
+object fsTest = order("test")("fs")
+
+fsTest.case(func(pass, error) {
+  string conts = fs.read("./yas.txt")
+  if conts is "foo\n" {
+    pass("read works")
+  } else {
+    error("read doesn't work")
+  }
+})
+
+fsTest.case(func(pass, error) {
+  fs.write("./foo.txt", "yasyas")
+  string writtenContents = fs.read("./foo.txt")
+  if writtenContents is "yasyas" {
+    pass("write works")
+  } else {
+    error("write doesn't work")
+  }
+})

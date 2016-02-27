@@ -1,0 +1,29 @@
+object obj = {
+  foo: 10,
+  bar: "hola",
+  anotherOne: {
+    yas: [6, "f", 19, order("math").pi],
+    foo: "fooey"
+  }
+}
+
+for every property within obj {
+  io.out(obj[property])
+  if property is "anotherOne" {
+    for every value of obj[property] {
+      io.out("in anotherOne: " + value)
+    }
+  }
+}
+
+number i = 0
+
+until i is 5 {
+  io.out(i)
+  i++
+}
+
+while i isnt 10 {
+  io.out(i)
+  i++
+}

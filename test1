@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ -z "$2" ] && [ "$2" == "-s" ]; then
+  echo -e "!\n~~~JISON COMPILATION~~~\n!"
+  jison beauty.jison
+  echo -e "!\n~~~FILE EXECUTION~~~\n!"
+else
+  jison beauty.jison &> /dev/null
+fi
+node --es_staging index.js $1

@@ -1,0 +1,9 @@
+object numsTest = order("test")("nums")
+
+numsTest.case(func(pass, error) {
+  if 4+2 is 6 {
+    pass("4+2 is 6")
+  } else {
+    error("4+2 isn't 6")
+  }
+})

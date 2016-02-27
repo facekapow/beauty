@@ -1,0 +1,58 @@
+object ifsTest = order("test")("ifs")
+
+ifsTest.case(func(pass, error) {
+  unless null {
+    pass("null is false")
+  } else {
+    error("null is true")
+  }
+})
+
+ifsTest.case(func(pass, error) {
+  if 7 {
+    pass("7 is true")
+  } else {
+    error("7 is false")
+  }
+})
+
+ifsTest.case(func(pass, error) {
+  if true == true {
+    pass("true equals true")
+  } else {
+    error("true doesn't equal true")
+  }
+})
+
+ifsTest.case(func(pass, error) {
+  if true != false {
+    pass("true doesn't equal false")
+  } else {
+    error("true equals false")
+  }
+})
+
+ifsTest.case(func(pass, error) {
+  if (true is yes) and (on is correct) and (right isnt wrong) {
+    pass("aliases work")
+  } else {
+    error("aliases don't work")
+  }
+})
+
+ifsTest.case(func(pass, error) {
+  unless true isnt true {
+    pass("true is true")
+  } else {
+    error("true isn't true")
+  }
+})
+
+ifsTest.case(func(pass, error) {
+  string input = "y"
+  if (input is "Y") or (input is "y") {
+    pass("string comparison works")
+  } else {
+    error("string comparison doesn't work")
+  }
+})

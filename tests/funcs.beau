@@ -1,0 +1,42 @@
+object funcTest = order("test")("funcs")
+
+funcTest.case(func(pass, error) {
+  func foo() {
+    any i = 6
+    i+4
+  }
+  if foo() is 10 {
+    pass("foo() is 10")
+  } else {
+    error("foo() isn't 10")
+  }
+})
+
+
+funcTest.case(func(pass, error) {
+  any fazz = func(num) {
+    num+8
+  }
+  if (fazz(6) is 14) {
+    pass("fazz(6) is 14")
+  } else {
+    error("fazz(6) isn't 14")
+  }
+})
+
+funcTest.case(func(pass, error) {
+  func cbTest(num, cb) {
+    number ret = num+9
+    # for now, variables can't reference themselves for assignment.
+    # so, num = num+9 is bad, it causes a RangeError
+    cb(ret)
+  }
+
+  cbTest(7, func(i) {
+    if i is 16 {
+      pass("i is 16")
+    } else {
+      error("i isn't 16")
+    }
+  })
+})

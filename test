@@ -1,0 +1,5 @@
+#!/bin/bash
+
+jison beauty.jison
+clear
+node --es_staging index.js

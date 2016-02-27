@@ -1,0 +1,2 @@
+package.nom = func(i) i+9
+package.fooey = func() 18

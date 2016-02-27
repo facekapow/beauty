@@ -1,0 +1,18 @@
+object packageTest = order("test")("packages")
+object package1 = order("./package1")
+
+packageTest.case(func(pass, error) {
+  if (package1.nom(8) is 17) {
+    pass("package1.nom(8) is 17")
+  } else {
+    error("package1.nom(8) isn't 17")
+  }
+})
+
+packageTest.case(func(pass, error) {
+  if package1.fooey() is 18 {
+    pass("package1.fooey() is 18")
+  } else {
+    error("package1.fooey isn't 18")
+  }
+})
