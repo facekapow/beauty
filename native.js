@@ -8,6 +8,7 @@ const readline = require('readline-sync');
 const fs = require('fs');
 const nativePackages = require('./nativePackages');
 const classes = require('./classes');
+//const require_rel = require('require-relative');
 
 const io = new types.BObject();
 io.add(new types.Identifier('out'), new types.NativeFunction(function() {
@@ -59,6 +60,11 @@ const order = new types.Variable(new types.Identifier('order'), new types.Identi
   return packageVar.toVal();
 }), true);
 order.toVal();
+
+/*const upgrade_order = new types.Variable(new types.Identifier('upgrade_order'), new types.Identifier('const'), types.globalScope, new types.NativeFunction(function(file) {
+  return require_rel(file, types.currentScope.getVar('@dir').toVal());
+}));
+upgrade_order.toVal();*/
 
 const unwrap = new types.Variable(new types.Identifier('unwrap'), new types.Identifier('const'), types.globalScope, new types.NativeFunction(function() {
   const objects = Array.prototype.slice.call(arguments, 0);

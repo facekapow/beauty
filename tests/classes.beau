@@ -9,10 +9,27 @@ classesTest.case(func(pass, error) {
     func yas() this.foo
   }
   Ya yep = create Ya()
-  if (yep.nom(yep.yas())) {
+  if (yep.nom(yep.yas()) is "6g") {
     pass("yep.nom(yep.yas()) is '6g'")
   } else {
     error("yep.nom(yep.yas()) isn't '6g'")
+  }
+})
+
+classesTest.case(func(pass, error) {
+  class Parent {
+    func constructor() this.open = func(fn) fn + "5"
+    func yer() this.open("3")
+  }
+  class Child {
+    func constructor() this._super = create Parent()
+    func close() this._super.yer()
+  }
+  Child yas = create Child();
+  if yas.close() is "35" {
+    pass("yas.close() is \"35\"")
+  } else {
+    error("yas.close() isn't \"35\"")
   }
 })
 
