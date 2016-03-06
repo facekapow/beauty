@@ -1,0 +1,280 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>Beauty Lang Documentation</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="style.css"/>
+    <script src="material.min.js"></script>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Beauty Lang Docs</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="#languageIntro">Intro</a>
+          <a class="mdl-navigation__link" href="#basicTypes">Basic Types</a>
+          <a class="mdl-navigation__link" href="#keywords-constants">Keywords/Constants</a>
+          <a class="mdl-navigation__link" href="#functions">Functions</a>
+          <a class="mdl-navigation__link" href="#variables">Variables</a>
+          <a class="mdl-navigation__link" href="#builtins">Builtins</a>
+          <a class="mdl-navigation__link" href="#packages">Packages</a>
+          <!--<a class="mdl-navigation__link" href="#"></a>-->
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content mdl-grid">
+          <div id="languageIntro" class="mdl-cell mdl-cell--7-col">
+            <h3>Language Intro</h3>
+            <p>
+              Beauty is a simple little language that was made for fun. It uses <a href="http://zaach.github.io/jison/">Jison</a>
+              for the lexer and scanner and builds an AST from it. For now, it's an interpreted language, but I do plan to allow it to
+              generate code, and even implement the language in C++ with Bison and Flex. Well, without further ado, the language:
+              <pre><code class="makeup-code"><span class="source keyword function">func</span> <span class="source name function">foo</span>(i) {
+  i+<span class="source constant number">4</span>
+}
+<span class="source comment single"># this can be shortened:</span>
+<span class="source comment single"># func fooAttempt2(i) i+4</span>
+
+<span class="source keyword type">any</span> resultingNumber = <span class="source name function-call">foo</span>(7) <span class="source comment single"># yields 11</span>
+<span class="source special builtin-object">io</span>.<span class="source special builtin-function">out</span>(resultingNumber) <span class="source comment single"># outputs '11' to the console</span></code>
+              </pre>
+            </p>
+          </div>
+          <div id="basicTypes" class="mdl-cell mdl-cell--7-col">
+            <h3>Basic Types</h3>
+            <p>
+              Beauty has 7 basic types:
+            </p>
+            <div id="basicTypes-any">
+              <h4><span class="source keyword type miniup">any</span></h4>
+              <p>
+                <span class="source keyword type miniup">any</span> is probably the most common type. It acts like JavaScript's
+                <span class="source keyword type miniup">var</span> keyword and C++'s <span class="source keyword type miniup">auto</span> keyword.
+                Basically, it tells you that the variable can be of any type you want. It's also the default type for an object's values.
+              </p>
+            </div>
+            <div id="basicTypes-void">
+              <h4><span class="source keyword type miniup">void</span></h4>
+              <p>
+                <span class="source keyword type miniup">void</span> denotes that the specified variable should always be <span class="source constant null miniup">null</span>.
+              </p>
+            </div>
+            <div id="basicTypes-number">
+              <h4><span class="source keyword type miniup">number</span></h4>
+              <p>
+                A <span class="source keyword type miniup">number</span> does exactly what it sounds like. It's a numeric value, from -Infinity to +Infinity.
+              </p>
+            </div>
+            <div id="basicTypes-string">
+              <h4><span class="source keyword type miniup">string</span></h4>
+              <p>
+                <span class="source keyword type miniup">string</span>s are well, strings! A string . Numbers can be converted
+                to strings by adding them to a string, like:
+                <pre><code class="makeup-code"><span class="source constant number">8</span>+<span class="source constant string">""</span></code></pre>
+              </p>
+            </div>
+            <div id="basicTypes-bool">
+              <h4><span class="source keyword type miniup">bool</span></h4>
+              <p>
+                <span class="source keyword type miniup">bool</span>s are used to signify a boolean value, true or false (or any of their aliases, see <a href="#keywords-constants">Keywords/Constants</a>).
+              </p>
+            </div>
+            <div id="basicTypes-array">
+              <h4><span class="source keyword type miniup">array</span></h4>
+              <p>
+                An <span class="source keyword type miniup">array</span> is a collection of values numbered starting from 0.
+              </p>
+            </div>
+            <div id="basicTypes-object">
+              <h4><span class="source keyword type miniup">object</span></h4>
+              <p>
+                <span class="source keyword type miniup">object</span>s are the most useful type of variables, since they can contain many different values
+                with different id's.
+              </p>
+            </div>
+          </div>
+          <div id="keywords-constants" class="mdl-cell mdl-cell--7-col">
+            <h3>Keywords/Constants</h3>
+            <p>
+              There's couple of keywords and constants, with their own aliases:
+            </p>
+            <div id="keywords-bools">
+              <h4>Bools</h4>
+              <p>
+                There's <span class="source constant true miniup">true</span> and <span class="source constant false miniup">false</span>, plus their aliases:<br>
+                True:
+                <ul>
+                  <li><span class="source constant true miniup">yes</span></li>
+                  <li><span class="source constant true miniup">on</span></li>
+                  <li><span class="source constant true miniup">correct</span></li>
+                  <li><span class="source constant true miniup">right</span></li>
+                </ul>
+                False:
+                <ul>
+                  <li><span class="source constant false miniup">no</span></li>
+                  <li><span class="source constant false miniup">off</span></li>
+                  <li><span class="source constant false miniup">incorrect</span></li>
+                  <li><span class="source constant false miniup">wrong</span></li>
+                </ul>
+              </p>
+            </div>
+            <div id="keywords-null">
+              <h4>Null</h4>
+              <p>
+                There's also <span class="source constant null miniup">null</span> and it's alias <span class="source constant null miniup">nothing</span>.
+                The are the same as JavaScript's <span class="source constant null miniup">null</span>. They mean that there is nothing there.
+                The type <span class="source keyword type miniup">void</span> specifies a variable which can only be null.
+              </p>
+            </div>
+            <div id="keywords-return">
+              <h4>Return</h4>
+              <p>
+                The <span class="source keyword return miniup">return</span> keyword is pretty much syntactic sugar, it actually does nothing (at the moment).
+                I plan to make it the value that is returned when a funciton returns. But for now, it does nothing.
+              </p>
+            </div>
+            <div id="keywords-new">
+              <h4>New</h4>
+              <p>
+                The <span class="source keyword new miniup">new</span> keyword and it's alias <span class="source keyword new miniup">create</span> are like the
+                <span class="source keyword return miniup">return</span> keyword, they do nothing. They simply let you know that you're creating an instance of a class.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div id="functions" class="mdl-cell mdl-cell--7-col">
+          <h3>Functions</h3>
+          <p>
+            Functions are pretty straightforward in Beauty:
+            <pre><code class="makeup-code"><span class="source keyword function">func</span> <span class="source name function">foo</span>() {
+  <span class="source constant number">7</span>
+}</code>
+            </pre>
+            The value of the last statement in a function is what is returned.
+            There's also the function expression, which acts like any other expression and be assigned to a variable or passed to a function:
+            <pre><code class="makeup-code"><span class="source name function-call">foo</span>(<span class="source keyword function">func</span>() {
+  <span class="source comment single"># do something here</span>
+})</code>
+            </pre>
+            One very important bug is that if you have a function that receives a callback with a variable and the caller assigns the same
+            variable name in their callback as you have in your function, Beauty will crash. I've been trying to fix this bug.
+          </p>
+        </div>
+        <div id="variables" class="mdl-cell mdl-cell--7-col">
+          <h3>Varibles</h3>
+          <p>
+            Variables are what they are in every language, a value with an identifier whose value can vary, except that Beauty combines
+            static and dynamic typing. By default, all variables are dynamically typed (with the <span class="source keyword type miniup">any</span> type).
+            However, you can opt-in to static typing by setting a type on the variable other than <span class="source keyword type miniup">any</span>.
+            <pre><code class="makeup-code"><span class="source keyword type">any</span> foo = <span class="source constant string">"yep"</span>
+foo = <span class="source constant number">22/7</span> <span class="source comment single"># works</span>
+<span class="source keyword type">number</span> bar = <span class="source constant number">8</span> <span class="source comment single"># works</span>
+<span class="source keyword type">string</span> fazz = [<span class="source constant number">1</span>, <span class="source constant true">yes</span>] <span class="source comment single"># TypeError</span></code>
+            </pre>
+          </p>
+        </div>
+        <div id="builtins" class="mdl-cell mdl-cell--7-col">
+          <h3>Builtins</h3>
+          <p>
+            Beauty has it's builtins like any other language:
+          </p>
+          <div id="builtins-io">
+            <h4><span class="source special builtin-object miniup">io</span></h4>
+            <p>
+              The <span class="source special builtin-object miniup">io</span> builtin provides access to input and output data.
+            </p>
+            <div id="builtins-io-out">
+              <h6><span class="source special builtin-function miniup">out</span></h6>
+              <p>
+                <span class="miniup"><span class="source special builtin-object">io</span>.<span class="source special builtin-function">out</span></span> is
+                probably the most used method, since it provides practical output. In Node, it outputs to <span class="miniup"><span class="source name object">process</span>.<span class="source name object">stdout</span></span>
+                with a newline. In the browser, it outputs to <span class="miniup"><span class="source special builtin-object">console</span>.<span class="source special builtin-function">log</span></span>.
+                <pre><code class="makeup-code"><span class="source special builtin-object">io</span>.<span class="source special builtin-function">out</span>(<span class="source constant string">"hey"</span>)
+<span class="source comment single"># outputs 'hey' with a newline</span></code>
+                </pre>
+              </p>
+            </div>
+            <div id="builtins-io-trimOut">
+              <h6><span class="source special builtin-function miniup">trimOut</span></h6>
+              <p>
+                Outputs without a newline. In Node, it performs its job correctly, but in the browser (since there is no way to output
+                without a newline) it acts like <span class="miniup"><span class="source special builtin-object">io</span>.<span class="source special builtin-function">out</span></span>.
+                <pre><code class="makeup-code"><span class="source special builtin-object">io</span>.<span class="source special builtin-function">trimOut</span>(<span class="source constant string">"hey"</span>)
+<span class="source comment single"># outputs 'hey' without a newline</span></code>
+                </pre>
+              </p>
+            </div>
+            <div id="builtins-io-in">
+              <h6><span class="source special builtin-function miniup">in</span></h6>
+              <p>
+                Gets an entire line from the user. In Node, it uses <a href="https://www.npmjs.com/package/readline-sync">readline-sync</a>.
+                In the browser it uses <span class="source special builtin-function miniup">prompt</span>.
+                <pre><code class="makeup-code"><span class="source keyword type">any</span> line = <span class="source special builtin-object">io</span>.<span class="source special builtin-function">in</span>()
+<span class="source comment single"># `line` now contains a line from the user</span></code>
+                </pre>
+              </p>
+            </div>
+            <div id="builtins-io-charIn">
+              <h6><span class="source special builtin-function miniup">charIn</span></h6>
+              <p>
+                Gets a single character from the user. In Node, it uses <a href="https://www.npmjs.com/package/readline-sync">readline-sync</a>.
+                In the browser it uses <span class="source special builtin-function miniup">prompt</span> and returns the first character submitted.
+                <pre><code class="makeup-code"><span class="source keyword type">any</span> char = <span class="source special builtin-object">io</span>.<span class="source special builtin-function">charIn</span>()
+<span class="source comment single"># `char` now contains a single character from the user</span></code>
+                </pre>
+              </p>
+            </div>
+          </div>
+          <div id="builtins-order">
+            <h4><span class="source special builtin-function miniup">order</span></h4>
+            <p>
+              "Orders" a package. See <a href="#packages">Packages</a>.
+            </p>
+          </div>
+          <div id="builtins-unwrap">
+            <h4><span class="source special builtin-function miniup">unwrap</span></h4>
+            <p>
+              "Unwraps" an object, making its properties into variables wherever it's called. It has the same effect as
+              C++'s <span class="source keyword miniup">using</span> keyword.
+              <pre><code class="makeup-code"><span class="source keyword type">any</span> someObject = {
+  prop1: <span class="source constant number">5</span>,
+  prop2: <span class="source constant string">"yep"</span>
+}
+<span class="source special builtin-function">unwrap</span>(someObject)
+<span class="source special builtin-object">io</span>.<span class="source special builtin-function">out</span>(prop1) <span class="source comment single"># outputs '5'</span>
+<span class="source special builtin-object">io</span>.<span class="source special builtin-function">out</span>(prop2) <span class="source comment single"># outputs 'yep'</span>
+</code>
+              </pre>
+            </p>
+          </div>
+        </div>
+        <div id="packages" class="mdl-cell mdl-cell--7-col">
+          <h3>Packages</h3>
+          <p>
+            Beauty has its own system of using external files, which are called packages. Packages have a <span class="source name object miniup">package</span>
+            variable which is an object and contains the exports for that package. Anything you want to export should be assigned to this variable.
+            You can "order" a package with the <span class="source special builtin-function miniup">order</span> function.
+            <pre><code class="makeup-code"><span class="source comment single"># someFile.beau</span>
+<span class="source name object">package</span>.<span class="source name function">someFunc</span> = <span class="source keyword function">func</span>(i) {
+  <span class="source special builtin-object">io</span>.<span class="source special builtin-function">out</span>(i)
+}</code>
+            </pre>
+            <pre><code class="makeup-code"><span class="source comment single"># testFile.beau</span>
+<span class="source keyword type">any</span> somefile = <span class="source special builtin-function">order</span>(<span class="source constant string">"./somefile"</span>)
+<span class="source name object">somefile</span>.<span class="source name function-call">someFunc</span>(<span class="source constant number">13</span>) <span class="source comment single"># outputs '13'</span></code>
+            </pre>
+          </p>
+        </div>
+        <!--<div id="" class="mdl-cell mdl-cell-7-col">
+          <h3></h3>
+          <p>
+          </p>
+        </div>-->
+      </main>
+    </div>
+  </body>
+</html>

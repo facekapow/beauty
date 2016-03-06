@@ -1,0 +1,51 @@
+body {
+  background-color: #cbc7c7;
+}
+
+.source.keyword {
+  color: #c678dd;
+}
+
+.source.name {
+  color: #61afef;
+}
+
+.source.name.object {
+  color: #e06c75;
+}
+
+.source.comment.single {
+  color: #5c6370;
+  font-style: italic;
+}
+
+.source.special.builtin-object {
+  color: #e5c07b;
+}
+
+.source.special.builtin-function {
+  color: #56b6c2;
+}
+
+.source.constant {
+  color: #d19a66;
+}
+
+.source.constant.string {
+  color: #98c379;
+}
+
+.makeup-code {
+  display: inline-block;
+  color: white;
+  background-color: #302f2f;
+  border-radius: 5px;
+  padding: 3px 6px 3px 6px;
+}
+
+.miniup {
+  color: white;
+  background-color: #302f2f;
+  border-radius: 3px;
+  padding: 1px 2px 1px 2px;
+}
