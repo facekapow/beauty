@@ -590,16 +590,21 @@ function convertToNativeType(val) {
 }
 
 class NativeFunction {
-  constructor(func) {
+  constructor(func, raw) {
     this._func = func;
+    this._raw = raw;
   }
   toType() {
     return 'any';
   }
   toVal(args) {
     if (!args) return this;
-    const funcArgs = [];
-    for (const arg of args) funcArgs.push(convertToNativeType(arg));
+    let funcArgs = [];
+    if (!this._raw) {
+      for (const arg of args) funcArgs.push(convertToNativeType(arg));
+    } else {
+      funcArgs = args;
+    }
     return convertToBeautyType(this._func.apply(this._func, funcArgs)).toVal();
   }
 }

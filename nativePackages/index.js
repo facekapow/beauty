@@ -1,7 +1,16 @@
 'use strict';
 
-module.exports = {
-  fs: require('./fs'),
-  math: require('./math'),
-  json: require('./json')
+module.exports = function(isBrowser) {
+  if (isBrowser) {
+    return {
+      math: require('./math'),
+      json: require('./json')
+    }
+  } else {
+    return {
+      fs: require('./fs'),
+      math: require('./math'),
+      json: require('./json')
+    }
+  }
 }

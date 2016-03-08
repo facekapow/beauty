@@ -35,6 +35,10 @@ body {
   color: #98c379;
 }
 
+.source.variable.object {
+  color: #e06c75;
+}
+
 .makeup-code {
   display: inline-block;
   color: white;

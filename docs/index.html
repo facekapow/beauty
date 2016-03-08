@@ -168,7 +168,9 @@
           <h3>Varibles</h3>
           <p>
             Variables are what they are in every language, a value with an identifier whose value can vary, except that Beauty combines
-            static and dynamic typing. By default, all variables are dynamically typed (with the <span class="source keyword type miniup">any</span> type).
+            static and dynamic typing. The regex for variables in beauty is <span class="miniup">/([a-zA-Z_$?@~]+([0-9]+)z?)/</span>.
+            As you can see, variables can contain upper- and lower- case letters, underscores, dollar signs, question marks, at symbols, tildes, and numbers (but no numbers as the first character).
+            By default, all variables are dynamically typed (with the <span class="source keyword type miniup">any</span> type).
             However, you can opt-in to static typing by setting a type on the variable other than <span class="source keyword type miniup">any</span>.
             <pre><code class="makeup-code"><span class="source keyword type">any</span> foo = <span class="source constant string">"yep"</span>
 foo = <span class="source constant number">22/7</span> <span class="source comment single"># works</span>
@@ -230,9 +232,15 @@ foo = <span class="source constant number">22/7</span> <span class="source comme
             </div>
           </div>
           <div id="builtins-order">
-            <h4><span class="source special builtin-function miniup">order</span></h4>
+            <h4><span class="source special builtin-function miniup">@order</span></h4>
             <p>
-              "Orders" a package. See <a href="#packages">Packages</a>.
+              "Orders" a package. Only in Node. See <a href="#packages">Packages</a>.
+            </p>
+          </div>
+          <div id="builtins-at-packages">
+            <h4><span class="source special builtin-function miniup">@packages</span></h4>
+            <p>
+              Contains packages exposed from native code. Only in the Browser. See <a href="#packages">Packages</a>
             </p>
           </div>
           <div id="builtins-unwrap">
@@ -257,16 +265,19 @@ foo = <span class="source constant number">22/7</span> <span class="source comme
           <p>
             Beauty has its own system of using external files, which are called packages. Packages have a <span class="source name object miniup">package</span>
             variable which is an object and contains the exports for that package. Anything you want to export should be assigned to this variable.
-            You can "order" a package with the <span class="source special builtin-function miniup">order</span> function.
+            You can "order" a package with the <span class="source special builtin-function miniup">@order</span> function.
             <pre><code class="makeup-code"><span class="source comment single"># someFile.beau</span>
 <span class="source name object">package</span>.<span class="source name function">someFunc</span> = <span class="source keyword function">func</span>(i) {
   <span class="source special builtin-object">io</span>.<span class="source special builtin-function">out</span>(i)
 }</code>
             </pre>
             <pre><code class="makeup-code"><span class="source comment single"># testFile.beau</span>
-<span class="source keyword type">any</span> somefile = <span class="source special builtin-function">order</span>(<span class="source constant string">"./somefile"</span>)
+<span class="source keyword type">any</span> somefile = <span class="source special builtin-function">@order</span>(<span class="source constant string">"./somefile"</span>)
 <span class="source name object">somefile</span>.<span class="source name function-call">someFunc</span>(<span class="source constant number">13</span>) <span class="source comment single"># outputs '13'</span></code>
             </pre>
+            However, <span class="source special builtin-function miniup">@order</span> is <i><b>not</b></i> available in the Browser.
+            Instead, <b>only native packages</b> can be used through the <span class="source variable object miniup">@packages</span> global.
+            It contains only packages exposed through native code.
           </p>
         </div>
         <!--<div id="" class="mdl-cell mdl-cell-7-col">

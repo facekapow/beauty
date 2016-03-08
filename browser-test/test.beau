@@ -1,0 +1,2 @@
+io.out("hola")
+io.out(@packages.json.toObject("{\"fooey\": 3}").fooey)
