@@ -1,4 +1,4 @@
-object ioTest = order("test")("io")
+object ioTest = @order("test")("io")
 
 ioTest.case(func(pass, error, warn) {
   warn("Check the output yourself, I can't check if io works on my own:")

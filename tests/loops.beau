@@ -2,7 +2,7 @@ object obj = {
   foo: 10,
   bar: "hola",
   anotherOne: {
-    yas: [6, "f", 19, order("math").pi],
+    yas: [6, "f", 19, @order("math").pi],
     foo: "fooey"
   }
 }

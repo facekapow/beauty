@@ -1,5 +1,5 @@
-object packageTest = order("test")("packages")
-object package1 = order("./package1")
+object packageTest = @order("test")("packages")
+object package1 = @order("./package1")
 
 packageTest.case(func(pass, error) {
   if (package1.nom(8) is 17) {

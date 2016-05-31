@@ -1,4 +1,4 @@
-object ifsTest = order("test")("ifs")
+object ifsTest = @order("test")("ifs")
 
 ifsTest.case(func(pass, error) {
   unless null {

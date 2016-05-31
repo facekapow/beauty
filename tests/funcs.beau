@@ -1,4 +1,4 @@
-object funcTest = order("test")("funcs")
+object funcTest = @order("test")("funcs")
 
 funcTest.case(func(pass, error) {
   func foo() {

@@ -1,5 +1,5 @@
-object fs = order("fs")
-object fsTest = order("test")("fs")
+object fs = @order("fs")
+object fsTest = @order("test")("fs")
 
 fsTest.case(func(pass, error) {
   string conts = fs.read("./yas.txt")

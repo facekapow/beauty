@@ -1,4 +1,4 @@
-object math = order("math")
+object math = @order("math")
 number customPi = 4*((4*math.atan(1/5))-(math.atan(1/239)))
 if customPi equals math.pi {
   io.out("it equals!")

@@ -1,4 +1,4 @@
-object classesTest = order("test")("classes")
+object classesTest = @order("test")("classes")
 
 classesTest.case(func(pass, error) {
   class Ya {

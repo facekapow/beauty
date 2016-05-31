@@ -1,4 +1,4 @@
-object varTest = order("test")("vars")
+object varTest = @order("test")("vars")
 
 varTest.case(func(pass, error) {
   string nom = "nom"

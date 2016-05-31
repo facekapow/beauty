@@ -1,4 +1,4 @@
-object numsTest = order("test")("nums")
+object numsTest = @order("test")("nums")
 
 numsTest.case(func(pass, error) {
   if 4+2 is 6 {
